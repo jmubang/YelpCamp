@@ -8,4 +8,5 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.plugin(passportLocalMongoose);
 
+// mongoose takes our schema and builds a model for our db with methods like User.find(), User.create(), ... etc 
 module.exports = mongoose.model("User", UserSchema);

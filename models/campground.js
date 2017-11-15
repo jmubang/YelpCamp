@@ -22,5 +22,6 @@ var campgroundSchema = new mongoose.Schema({
 });
 
 //collection setup
+// mongoose passes methods to this model to interact with MongoDB
 module.exports = mongoose.model("Campground", campgroundSchema);
 

@@ -5,6 +5,9 @@ var express       = require("express"),
     passport      = require("passport"),
     LocalStrategy = require("passport-local"),
     methodOverride= require("method-override"),
+    // flash is used in this context to flash a message on whether the user has been 
+    // successfully authenticated and redirects to /campgrounds. 
+    // register a new user or log out to see an example
     flash         = require("connect-flash"),
     Campground    = require("./models/campground"),
     Comment       = require("./models/comment"),
@@ -16,11 +19,15 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     authRoutes       = require("./routes/index");
 
+// =========== connects to MongoDB =======
 var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp"
 mongoose.connect(url, {useMongoClient: true});
-
 mongoose.Promise = global.Promise;
+// ============================================
+
+//need to copy&paste to use bodyParser(refer to docs)
 app.use(bodyParser.urlencoded({extended: true}));
+//keeps us from having to rewrite ejs on our ejs templates
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));

@@ -31,7 +31,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var author = {
         id: req.user._id,
         username: req.user.username
-        };
+    };
     var newCampground = {name: name, price:price, image: image, description: desc, author: author};
     console.log(req.user);
     //  Create a new campground and save to DB
@@ -68,7 +68,7 @@ router.get("/:id", function(req, res){
 router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res){
             Campground.findById(req.params.id, function(err, foundCampground){
             res.render("campgrounds/edit", {campground: foundCampground});
-        });
+            });
         //otherwise, redirect
     //if not, redirect
 });
